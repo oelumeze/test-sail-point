@@ -11,6 +11,11 @@ const books = [];
 
 app.post("/book/createBook", (req, res) => {
     let { title, author } = req.body;
+    if (!title || !author) { 
+        return res.status(400).json({
+            message: "Title and Author name must be provided"
+        });
+    }
     books.push({
         bookId: util.generateId(),
         title,
